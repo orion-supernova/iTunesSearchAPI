@@ -39,7 +39,7 @@ enum APIEndpoint {
         static let country = "us"
         static let term = "apple"
         static let media = "software"
-        static let entity = "entity"
+        static let entity = "software"
     }
     
     private var parameters: [String : Any] {

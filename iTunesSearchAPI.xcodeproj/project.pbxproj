@@ -17,6 +17,7 @@
 		54C750B326F22390000E5B39 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B226F22390000E5B39 /* APIEndpoint.swift */; };
 		54C750B526F23805000E5B39 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B426F23805000E5B39 /* NetworkClient.swift */; };
 		54C750B726F23941000E5B39 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B626F23941000E5B39 /* Result.swift */; };
+		54C750B926F25084000E5B39 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B826F25084000E5B39 /* ResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		54C750B226F22390000E5B39 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		54C750B426F23805000E5B39 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		54C750B626F23941000E5B39 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		54C750B826F25084000E5B39 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				54C7509926F21ABD000E5B39 /* ViewController.swift */,
+				54C750B826F25084000E5B39 /* ResultTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				54C750B126F2237C000E5B39 /* NetworkProcessor.swift in Sources */,
 				54C750B726F23941000E5B39 /* Result.swift in Sources */,
 				54C750B326F22390000E5B39 /* APIEndpoint.swift in Sources */,
+				54C750B926F25084000E5B39 /* ResultTableViewCell.swift in Sources */,
 				54C750B526F23805000E5B39 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
