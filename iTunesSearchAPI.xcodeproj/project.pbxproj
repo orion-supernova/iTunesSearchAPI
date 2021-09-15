@@ -56,15 +56,55 @@
 		54C7509426F21ABD000E5B39 /* iTunesSearchAPI */ = {
 			isa = PBXGroup;
 			children = (
-				54C7509526F21ABD000E5B39 /* AppDelegate.swift */,
-				54C7509726F21ABD000E5B39 /* SceneDelegate.swift */,
-				54C7509926F21ABD000E5B39 /* ViewController.swift */,
-				54C7509B26F21ABD000E5B39 /* Main.storyboard */,
-				54C7509E26F21ABD000E5B39 /* Assets.xcassets */,
-				54C750A026F21ABD000E5B39 /* LaunchScreen.storyboard */,
-				54C750A326F21ABD000E5B39 /* Info.plist */,
+				54C750AD26F22017000E5B39 /* Resources */,
+				54C750AE26F2204E000E5B39 /* ViewControllers */,
+				54C750AC26F2200C000E5B39 /* View */,
+				54C750AF26F22062000E5B39 /* Supporting Files */,
+				54C750AB26F21FFB000E5B39 /* Model */,
 			);
 			path = iTunesSearchAPI;
+			sourceTree = "<group>";
+		};
+		54C750AB26F21FFB000E5B39 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		54C750AC26F2200C000E5B39 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54C7509B26F21ABD000E5B39 /* Main.storyboard */,
+				54C750A026F21ABD000E5B39 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		54C750AD26F22017000E5B39 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				54C7509526F21ABD000E5B39 /* AppDelegate.swift */,
+				54C7509726F21ABD000E5B39 /* SceneDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		54C750AE26F2204E000E5B39 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				54C7509926F21ABD000E5B39 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		54C750AF26F22062000E5B39 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				54C7509E26F21ABD000E5B39 /* Assets.xcassets */,
+				54C750A326F21ABD000E5B39 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,7 +328,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37TC2VKVJ6;
-				INFOPLIST_FILE = iTunesSearchAPI/Info.plist;
+				INFOPLIST_FILE = "iTunesSearchAPI/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +347,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37TC2VKVJ6;
-				INFOPLIST_FILE = iTunesSearchAPI/Info.plist;
+				INFOPLIST_FILE = "iTunesSearchAPI/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
