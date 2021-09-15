@@ -13,6 +13,10 @@
 		54C7509D26F21ABD000E5B39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C7509B26F21ABD000E5B39 /* Main.storyboard */; };
 		54C7509F26F21ABD000E5B39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54C7509E26F21ABD000E5B39 /* Assets.xcassets */; };
 		54C750A226F21ABD000E5B39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C750A026F21ABD000E5B39 /* LaunchScreen.storyboard */; };
+		54C750B126F2237C000E5B39 /* NetworkProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B026F2237C000E5B39 /* NetworkProcessor.swift */; };
+		54C750B326F22390000E5B39 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B226F22390000E5B39 /* APIEndpoint.swift */; };
+		54C750B526F23805000E5B39 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B426F23805000E5B39 /* NetworkClient.swift */; };
+		54C750B726F23941000E5B39 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B626F23941000E5B39 /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		54C7509E26F21ABD000E5B39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54C750A126F21ABD000E5B39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54C750A326F21ABD000E5B39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54C750B026F2237C000E5B39 /* NetworkProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProcessor.swift; sourceTree = "<group>"; };
+		54C750B226F22390000E5B39 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		54C750B426F23805000E5B39 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		54C750B626F23941000E5B39 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,10 @@
 		54C750AB26F21FFB000E5B39 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				54C750B026F2237C000E5B39 /* NetworkProcessor.swift */,
+				54C750B226F22390000E5B39 /* APIEndpoint.swift */,
+				54C750B626F23941000E5B39 /* Result.swift */,
+				54C750B426F23805000E5B39 /* NetworkClient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +192,10 @@
 				54C7509A26F21ABD000E5B39 /* ViewController.swift in Sources */,
 				54C7509626F21ABD000E5B39 /* AppDelegate.swift in Sources */,
 				54C7509826F21ABD000E5B39 /* SceneDelegate.swift in Sources */,
+				54C750B126F2237C000E5B39 /* NetworkProcessor.swift in Sources */,
+				54C750B726F23941000E5B39 /* Result.swift in Sources */,
+				54C750B326F22390000E5B39 /* APIEndpoint.swift in Sources */,
+				54C750B526F23805000E5B39 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
