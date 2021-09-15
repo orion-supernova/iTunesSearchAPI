@@ -9,7 +9,7 @@ import Foundation
 
 struct NetworkClient {
 
-    func fetchResults(withTerm term: String, inEntity entity: String, completion: @escaping ([Result]?) -> Void) {
+    func fetchResults(withTerm term: String, completion: @escaping ([Result]?) -> Void) {
         
         // 1. endpoint
         let searchEndpoint = APIEndpoint.search(term: term)
@@ -28,8 +28,8 @@ struct NetworkClient {
                 }
                 
                 // 4. create an array of results
-                let results = resultDictionaries.compactMap({ appDictionary in
-                    return Result(dictionary: appDictionary)
+                let results = resultDictionaries.compactMap({ resultDictionary in
+                    return Result(dictionary: resultDictionary)
                 })
                 
                 // 5. call completion
