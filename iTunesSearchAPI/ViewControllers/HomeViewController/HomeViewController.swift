@@ -6,6 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
+
+enum SectionType: Int {
+    case zeroToHundred = 0
+    case hundredToTwofifty = 1
+    case twofiftyTofivehundred = 2
+    case fivehundredPlus = 3
+}
 
 class HomeViewController: UIViewController {
 
@@ -17,9 +25,15 @@ class HomeViewController: UIViewController {
     }()
     private let searchBar = UISearchController(searchResultsController: nil)
     
-    var results: [Result]?
-    var networkClient = NetworkClient()
+    private var resultList = [ResultList]()
+    private var firstSec = [String]()
+    private var secondSec = [String]()
+    private var thirdSec = [String]()
+    private var fourthSec = [String]()
     
+    
+    
+    private var models = [ResultListTableViewCellModel]()
     private var pendingRequestWorkItem: DispatchWorkItem?
     
     override func viewDidLoad() {
@@ -57,49 +71,120 @@ class HomeViewController: UIViewController {
     }
     
     private func fetchResults() {
-        networkClient.fetchResults(withTerm: "") { (results) in
-            self.results = results
-//            print(self.results)
-            self.tableView.reloadData()
+        APICaller.shared.getResults(term: "") { [weak self] closureResult in
+            switch closureResult {
+            case .success(let resultList):
+                self?.resultList = resultList
+                self?.models = resultList.compactMap({ ResultListTableViewCellModel(screenshotUrls: $0.screenshotUrls)
+                })
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
         }
     }
-
-
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if results?.count == 0 {
-                tableView.setMessage("No results")
-            } else {
-                tableView.clearBackground()
-            }
-
-        return results?.count ?? 0
+        let sectionType = SectionType(rawValue: section)
+        switch sectionType {
+        case .zeroToHundred:
+            return self.firstSec.count
+        case .hundredToTwofifty:
+            return self.secondSec.count
+        case .twofiftyTofivehundred:
+            return self.thirdSec.count
+        case .fivehundredPlus:
+            return self.fourthSec.count
+        case .none:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionType = SectionType(rawValue: section)
+        switch sectionType {
+        case .zeroToHundred:
+            return "0-100"
+        case .hundredToTwofifty:
+            return "100-250"
+        case .twofiftyTofivehundred:
+            return "250-500"
+        case .fivehundredPlus:
+            return "500+"
+        case .none:
+            return ""
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.identifier, for: indexPath) as? ResultTableViewCell else { fatalError() }
-        cell.result = results?[indexPath.row]
-//        cell.selectionStyle = .none
+        let sectionType = SectionType(rawValue: indexPath.section)
+        switch sectionType {
+        case .zeroToHundred:
+            cell.configureCell(imageUrl: self.firstSec[indexPath.row])
+        case .hundredToTwofifty:
+            cell.configureCell(imageUrl: self.secondSec[indexPath.row])
+        case .twofiftyTofivehundred:
+            cell.configureCell(imageUrl: self.thirdSec[indexPath.row])
+        case .fivehundredPlus:
+            cell.configureCell(imageUrl: self.fourthSec[indexPath.row])
+        case .none:
+            break
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text, !text.isEmpty else { return }
         
-        networkClient.fetchResults(withTerm: text) { results in
-            self.results = results
-            self.tableView.reloadData()
+        APICaller.shared.getResults(term: text) { [weak self] result in
+            switch result {
+            case .success(let resultList):
+                self?.resultList = resultList
+                for result in resultList {
+                    for url in result.screenshotUrls {
+                        if let imageUrl = URL(string: url) {
+                            let data = try? Data(contentsOf: imageUrl)
+                            let imageData = NSData(data: data!)
+                            if Double(imageData.count)/1000 <= 100.0 && Double(imageData.count)/1000 > 0 {
+                                self?.firstSec.append(url)
+                            } else if Double(imageData.count)/1000 <= 250.0 && Double(imageData.count)/1000 > 100 {
+                                self?.secondSec.append(url)
+                            } else if Double(imageData.count)/1000 <= 500.0 && Double(imageData.count)/1000 > 250 {
+                                self?.thirdSec.append(url)
+                            } else {
+                                self?.fourthSec.append(url)
+                            }
+                        }
+                        
+                    }
+                }
+                self?.models = resultList.compactMap({ ResultListTableViewCellModel(screenshotUrls: $0.screenshotUrls)})
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    self?.searchBar.dismiss(animated: true, completion: nil)
+                    print(resultList)
+                }
+            case .failure(let error):
+                print(error)
+            }
         }
         print(text)
     }
@@ -107,11 +192,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISear
         
         pendingRequestWorkItem?.cancel()
         let requestWorkItem = DispatchWorkItem { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.networkClient.fetchResults(withTerm: searchText, completion: { results in
-                strongSelf.results = results
-                strongSelf.tableView.reloadData()
-            })
+            
+            APICaller.shared.getResults(term: searchText) { [weak self] result in
+                switch result {
+                case .success(let resultList):
+                    self?.resultList = resultList
+//                    self?.models = resultList.compactMap({ ResultListTableViewCellModel(screenshotUrls: $0.screenshotUrls)})
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
                 }
         pendingRequestWorkItem = requestWorkItem
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250),
