@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     private let tableView: UITableView = {
         let table = UITableView()
@@ -15,40 +15,44 @@ class ViewController: UIViewController {
         table.register(ResultTableViewCell.self, forCellReuseIdentifier: ResultTableViewCell.identifier)
         return table
     }()
-    private let searchVC = UISearchController(searchResultsController: nil)
+    private let searchBar = UISearchController(searchResultsController: nil)
     
     var results: [Result]?
     var networkClient = NetworkClient()
     
+    private var pendingRequestWorkItem: DispatchWorkItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(tableView)
-        setupTableView()
-        
-        view.backgroundColor = .systemBackground
-        title = "iTunes Search"
-        
-        fetchResults()
-        createSearchBar()
-        
+        configureUI()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    private func createSearchBar() {
-        navigationItem.searchController = searchVC
-        searchVC.searchBar.delegate = self
-        searchVC.searchBar.autocapitalizationType = .none
-        searchVC.searchBar.autocorrectionType = .no
+    
+    private func configureUI() {
+        view.backgroundColor = .systemBackground
+        title = "iTunes Search"
+        setupTableView()
+        configureSearhBar()
+    }
+    
+    private func configureSearhBar() {
+        navigationItem.searchController = searchBar
+        searchBar.searchBar.delegate = self
+        searchBar.searchBar.autocapitalizationType = .none
+        searchBar.searchBar.autocorrectionType = .no
+        searchBar.searchBar.searchBarStyle = .minimal
+        searchBar.searchBar.isTranslucent = true
     }
     
     private func setupTableView() {
+        view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        
     }
     
     private func fetchResults() {
@@ -62,7 +66,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if results?.count == 0 {
@@ -97,6 +101,21 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UISearchBa
         }
         print(text)
     }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        pendingRequestWorkItem?.cancel()
+        let requestWorkItem = DispatchWorkItem { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.networkClient.fetchResults(withTerm: searchText, completion: { results in
+                strongSelf.results = results
+                strongSelf.tableView.reloadData()
+            })
+                }
+        pendingRequestWorkItem = requestWorkItem
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250),
+                                              execute: requestWorkItem)
+    }
+    
 }
 extension UITableView {
 
