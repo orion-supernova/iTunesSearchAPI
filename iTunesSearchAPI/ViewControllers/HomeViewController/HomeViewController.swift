@@ -141,45 +141,55 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISear
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        if firstSec.count == 0 && secondSec.count == 0 && thirdSec.count == 0 && fourthSec.count == 0 {
+                tableView.setMessage("No results")
+            } else {
+                tableView.clearBackground()
+                return 4
+            }
+        return 0
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text, !text.isEmpty else { return }
         
         APICaller.shared.getResults(term: text) { [weak self] result in
+            guard let strongSelf = self else { return }
             switch result {
             case .success(let resultList):
-                self?.resultList = resultList
+                strongSelf.resultList = resultList
+                strongSelf.firstSec.removeAll()
+                strongSelf.secondSec.removeAll()
+                strongSelf.thirdSec.removeAll()
+                strongSelf.fourthSec.removeAll()
                 for result in resultList {
                     for url in result.screenshotUrls {
                         if let imageUrl = URL(string: url) {
                             let data = try? Data(contentsOf: imageUrl)
                             let imageData = NSData(data: data!)
                             if Double(imageData.count)/1000 <= 100.0 && Double(imageData.count)/1000 > 0 {
-                                self?.firstSec.append(url)
+                                strongSelf.firstSec.append(url)
                             } else if Double(imageData.count)/1000 <= 250.0 && Double(imageData.count)/1000 > 100 {
-                                self?.secondSec.append(url)
+                                strongSelf.secondSec.append(url)
                             } else if Double(imageData.count)/1000 <= 500.0 && Double(imageData.count)/1000 > 250 {
-                                self?.thirdSec.append(url)
+                                strongSelf.thirdSec.append(url)
                             } else {
-                                self?.fourthSec.append(url)
+                                strongSelf.fourthSec.append(url)
                             }
                         }
                         
                     }
                 }
-                self?.models = resultList.compactMap({ ResultListTableViewCellModel(screenshotUrls: $0.screenshotUrls)})
+                strongSelf.models = resultList.compactMap({ ResultListTableViewCellModel(screenshotUrls: $0.screenshotUrls)})
                 DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                    self?.searchBar.dismiss(animated: true, completion: nil)
+                    strongSelf.tableView.reloadData()
+                    strongSelf.searchBar.dismiss(animated: true, completion: nil)
                     print(resultList)
                 }
             case .failure(let error):

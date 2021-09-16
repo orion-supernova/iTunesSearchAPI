@@ -27,22 +27,15 @@ class ResultTableViewCell: UITableViewCell {
         contentView.addSubview(resultImageView)
         
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var resultList: ResultList! {
-        didSet {
-            self.updateUI()
-        }
-    }
     func configureCell(imageUrl: String) {
         if let url = URL(string: imageUrl) {
             self.resultImageView.kf.setImage(with: url)
         }
-        
-    }
-    func updateUI() {
         
     }
     
@@ -53,9 +46,6 @@ class ResultTableViewCell: UITableViewCell {
                                       y: 5,
                                       width: 140,
                                       height: contentView.frame.size.height-10)
-
-        
-        
     }
     
     override func prepareForReuse() {
