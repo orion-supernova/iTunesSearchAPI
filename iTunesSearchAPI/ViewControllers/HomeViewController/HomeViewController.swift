@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        fetchResults()
     }
     
     override func viewDidLayoutSubviews() {
@@ -81,6 +82,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISear
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.identifier, for: indexPath) as? ResultTableViewCell else { fatalError() }
         cell.result = results?[indexPath.row]
+//        cell.selectionStyle = .none
         return cell
     }
     
