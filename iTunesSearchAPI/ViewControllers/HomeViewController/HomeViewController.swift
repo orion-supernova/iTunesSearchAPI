@@ -175,6 +175,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISear
                             let imageData = NSData(data: data!)
                             if Double(imageData.count)/1000 <= 100.0 && Double(imageData.count)/1000 > 0 {
                                 strongSelf.firstSec.append(url)
+                                DispatchQueue.main.async {
+                                    strongSelf.tableView.reloadData()
+                                }
                             } else if Double(imageData.count)/1000 <= 250.0 && Double(imageData.count)/1000 > 100 {
                                 strongSelf.secondSec.append(url)
                             } else if Double(imageData.count)/1000 <= 500.0 && Double(imageData.count)/1000 > 250 {
