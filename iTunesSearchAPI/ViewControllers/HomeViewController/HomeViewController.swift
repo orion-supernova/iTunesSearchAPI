@@ -62,6 +62,8 @@ class HomeViewController: UIViewController {
         searchBar.searchBar.autocorrectionType = .no
         searchBar.searchBar.searchBarStyle = .minimal
         searchBar.searchBar.isTranslucent = true
+        searchBar.automaticallyShowsCancelButton = false
+        searchBar.automaticallyShowsScopeBar = false
     }
     
     private func setupTableView() {
@@ -168,7 +170,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISear
             return imageView
         }()
         view.addSubview(imageView)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             imageView.removeFromSuperview()
         }
     }
@@ -245,6 +247,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISear
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         APICaller.shared.currentTask?.cancel()
+        self.cancelTask = true
         pendingRequestWorkItem?.cancel()
         let requestWorkItem = DispatchWorkItem { [weak self] in
             guard let `self` = self else { return }
