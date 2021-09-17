@@ -3,24 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5425F67726F3BFA200EA7BA1 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5425F67626F3BFA200EA7BA1 /* APICaller.swift */; };
+		5425F67926F3C51900EA7BA1 /* ResultListTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5425F67826F3C51900EA7BA1 /* ResultListTableViewCellModel.swift */; };
+		5425F67C26F3CE3E00EA7BA1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5425F67B26F3CE3E00EA7BA1 /* Kingfisher */; };
 		54C7509626F21ABD000E5B39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C7509526F21ABD000E5B39 /* AppDelegate.swift */; };
 		54C7509826F21ABD000E5B39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C7509726F21ABD000E5B39 /* SceneDelegate.swift */; };
 		54C7509A26F21ABD000E5B39 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C7509926F21ABD000E5B39 /* HomeViewController.swift */; };
 		54C7509D26F21ABD000E5B39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C7509B26F21ABD000E5B39 /* Main.storyboard */; };
 		54C7509F26F21ABD000E5B39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54C7509E26F21ABD000E5B39 /* Assets.xcassets */; };
 		54C750A226F21ABD000E5B39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C750A026F21ABD000E5B39 /* LaunchScreen.storyboard */; };
-		54C750B126F2237C000E5B39 /* NetworkProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B026F2237C000E5B39 /* NetworkProcessor.swift */; };
-		54C750B326F22390000E5B39 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B226F22390000E5B39 /* APIEndpoint.swift */; };
-		54C750B526F23805000E5B39 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B426F23805000E5B39 /* NetworkClient.swift */; };
 		54C750B726F23941000E5B39 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B626F23941000E5B39 /* Result.swift */; };
 		54C750B926F25084000E5B39 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C750B826F25084000E5B39 /* ResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5425F67626F3BFA200EA7BA1 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		5425F67826F3C51900EA7BA1 /* ResultListTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultListTableViewCellModel.swift; sourceTree = "<group>"; };
 		54C7509226F21ABD000E5B39 /* iTunesSearchAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesSearchAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C7509526F21ABD000E5B39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54C7509726F21ABD000E5B39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,9 +31,6 @@
 		54C7509E26F21ABD000E5B39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54C750A126F21ABD000E5B39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54C750A326F21ABD000E5B39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		54C750B026F2237C000E5B39 /* NetworkProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProcessor.swift; sourceTree = "<group>"; };
-		54C750B226F22390000E5B39 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
-		54C750B426F23805000E5B39 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		54C750B626F23941000E5B39 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		54C750B826F25084000E5B39 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5425F67C26F3CE3E00EA7BA1 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +71,7 @@
 				54C750AC26F2200C000E5B39 /* Storyboards */,
 				54C750AF26F22062000E5B39 /* Supporting Files */,
 				54C750AB26F21FFB000E5B39 /* Model */,
+				5425F67826F3C51900EA7BA1 /* ResultListTableViewCellModel.swift */,
 			);
 			path = iTunesSearchAPI;
 			sourceTree = "<group>";
@@ -78,10 +79,8 @@
 		54C750AB26F21FFB000E5B39 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				54C750B026F2237C000E5B39 /* NetworkProcessor.swift */,
-				54C750B226F22390000E5B39 /* APIEndpoint.swift */,
 				54C750B626F23941000E5B39 /* Result.swift */,
-				54C750B426F23805000E5B39 /* NetworkClient.swift */,
+				5425F67626F3BFA200EA7BA1 /* APICaller.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -154,6 +153,9 @@
 			dependencies = (
 			);
 			name = iTunesSearchAPI;
+			packageProductDependencies = (
+				5425F67B26F3CE3E00EA7BA1 /* Kingfisher */,
+			);
 			productName = iTunesSearchAPI;
 			productReference = 54C7509226F21ABD000E5B39 /* iTunesSearchAPI.app */;
 			productType = "com.apple.product-type.application";
@@ -181,6 +183,9 @@
 				Base,
 			);
 			mainGroup = 54C7508926F21ABD000E5B39;
+			packageReferences = (
+				5425F67A26F3CE3E00EA7BA1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 54C7509326F21ABD000E5B39 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -211,11 +216,10 @@
 				54C7509A26F21ABD000E5B39 /* HomeViewController.swift in Sources */,
 				54C7509626F21ABD000E5B39 /* AppDelegate.swift in Sources */,
 				54C7509826F21ABD000E5B39 /* SceneDelegate.swift in Sources */,
-				54C750B126F2237C000E5B39 /* NetworkProcessor.swift in Sources */,
+				5425F67926F3C51900EA7BA1 /* ResultListTableViewCellModel.swift in Sources */,
+				5425F67726F3BFA200EA7BA1 /* APICaller.swift in Sources */,
 				54C750B726F23941000E5B39 /* Result.swift in Sources */,
-				54C750B326F22390000E5B39 /* APIEndpoint.swift in Sources */,
 				54C750B926F25084000E5B39 /* ResultTableViewCell.swift in Sources */,
-				54C750B526F23805000E5B39 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +421,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5425F67A26F3CE3E00EA7BA1 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5425F67B26F3CE3E00EA7BA1 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5425F67A26F3CE3E00EA7BA1 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 54C7508A26F21ABD000E5B39 /* Project object */;
 }
