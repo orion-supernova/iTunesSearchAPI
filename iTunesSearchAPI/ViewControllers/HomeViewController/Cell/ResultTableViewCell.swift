@@ -36,7 +36,6 @@ class ResultTableViewCell: UITableViewCell {
         if let url = URL(string: imageUrl) {
             self.resultImageView.kf.setImage(with: url)
         }
-        
     }
     
     override func layoutSubviews() {

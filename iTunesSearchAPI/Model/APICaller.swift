@@ -15,6 +15,7 @@ class APICaller {
         static let defaultUrlBeforeTerm = "https://itunes.apple.com/search?country=us&entity=software&media=software&term="
         static let defaultUrlTerm = "amazon"
     }
+    public weak var currentTask: URLSessionTask?
     
     func getResults(term: String, completion: @escaping (Result<[ResultList], Error>) -> Void) {
         
@@ -22,21 +23,23 @@ class APICaller {
         let urlString = Constants.defaultUrlBeforeTerm + queryParam
         
         guard let url = URL(string: urlString) else { return }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+        self.currentTask = URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
                 completion(.failure(error))
             } else if let data = data {
                 do {
                     let result = try JSONDecoder().decode(ApiResult.self, from: data)
-//                    print(result.results[0].screenshotUrls)
                     completion(.success(result.results))
                 } catch  {
                     completion(.failure(error))
                 }
             }
         }
-        task.resume()
-        
+        if HomeViewController().cancelTask {
+            currentTask?.cancel()
+        } else {
+            currentTask?.resume()
+        }
     }
 }
+
